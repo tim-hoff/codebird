@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="gdx-backend-lwjgl">
+    <property environment="env"/>
+    <property name="gdx.location" value="../../gdx"/>
+    <property name="codebird-cave.location" value="../../../../../workspace/codebird-cave"/>
+    <property name="cuboc.location" value="../../demos/cuboc/cuboc"/>
+    <property name="gdx-invaders.location" value="../../demos/invaders/gdx-invaders"/>
+    <property name="gdx-tests-lwjgl.location" value="../../tests/gdx-tests-lwjgl"/>
+    <property name="gdx-tools.location" value="../../extensions/gdx-tools"/>
+    <property name="gdx-vectorpinball.location" value="../../demos/vector-pinball/gdx-vectorpinball"/>
+    <property name="metagun.location" value="../../demos/metagun/metagun-desktop"/>
+    <property name="model-loaders.location" value="../../extensions/model-loaders/model-loaders"/>
+    <property name="pax-britannica.location" value="../../demos/pax-britannica/pax-britannica"/>
+    <property name="superjumper.location" value="../../demos/superjumper/superjumper"/>
+    <property name="very-angry-robots.location" value="../../demos/very-angry-robots/very-angry-robots"/>
+    <property name="ECLIPSE_HOME" value="../../../../adt-bundle-windows-x86_64-20130219/eclipse"/>
+    <property name="gdx-jnigen.location" value="../../extensions/gdx-jnigen"/>
+    <property name="gdx-openal.location" value="../gdx-openal"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="gdx-jnigen.classpath">
+        <pathelement location="${gdx-jnigen.location}/bin"/>
+        <pathelement location="${gdx-jnigen.location}/libs/javaparser-1.0.8.jar"/>
+    </path>
+    <path id="gdx.classpath">
+        <pathelement location="${gdx.location}/bin"/>
+        <path refid="gdx-jnigen.classpath"/>
+    </path>
+    <path id="gdx-openal.classpath">
+        <pathelement location="${gdx-openal.location}/bin"/>
+        <pathelement location="${gdx-openal.location}/libs/jorbis.jar"/>
+        <path refid="gdx.classpath"/>
+        <pathelement location="${gdx-openal.location}/libs/lwjgl-debug.jar"/>
+        <pathelement location="${gdx-openal.location}/libs/jlayer-1.0.1-libgdx.jar"/>
+    </path>
+    <path id="gdx-backend-lwjgl.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="${gdx.location}/libs/gdx-natives.jar"/>
+        <pathelement location="libs/gdx-backend-lwjgl-natives.jar"/>
+        <path refid="gdx-openal.classpath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/.svn/*"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${gdx-jnigen.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-openal.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${gdx-jnigen.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-openal.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="**/.svn/*"/>
+            <classpath refid="gdx-backend-lwjgl.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="build.xml" dir="${codebird-cave.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${codebird-cave.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${cuboc.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${cuboc.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-invaders.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-invaders.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tests-lwjgl.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tests-lwjgl.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tools.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tools.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${metagun.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${metagun.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${model-loaders.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${model-loaders.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${pax-britannica.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${pax-britannica.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${superjumper.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${superjumper.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${very-angry-robots.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${very-angry-robots.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>

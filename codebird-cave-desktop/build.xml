@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="codebird-cave-desktop">
+    <property environment="env"/>
+    <property name="assets.link" value="../codebird-cave-android/assets"/>
+    <property name="gdx.location" value="../../Documents/GitHub/libgdx/gdx"/>
+    <property name="ECLIPSE_HOME" value="../../Documents/adt-bundle-windows-x86_64-20130219/eclipse"/>
+    <property name="gdx-jnigen.location" value="../../Documents/GitHub/libgdx/extensions/gdx-jnigen"/>
+    <property name="gdx-openal.location" value="../../Documents/GitHub/libgdx/backends/gdx-openal"/>
+    <property name="gdx-backend-lwjgl.location" value="../../Documents/GitHub/libgdx/backends/gdx-backend-lwjgl"/>
+    <property name="codebird-cave.location" value="../codebird-cave"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="gdx-jnigen.classpath">
+        <pathelement location="${gdx-jnigen.location}/bin"/>
+        <pathelement location="${gdx-jnigen.location}/libs/javaparser-1.0.8.jar"/>
+    </path>
+    <path id="gdx.classpath">
+        <pathelement location="${gdx.location}/bin"/>
+        <path refid="gdx-jnigen.classpath"/>
+    </path>
+    <path id="gdx-openal.classpath">
+        <pathelement location="${gdx-openal.location}/bin"/>
+        <pathelement location="${gdx-openal.location}/libs/jorbis.jar"/>
+        <path refid="gdx.classpath"/>
+        <pathelement location="${gdx-openal.location}/libs/lwjgl-debug.jar"/>
+        <pathelement location="${gdx-openal.location}/libs/jlayer-1.0.1-libgdx.jar"/>
+    </path>
+    <path id="gdx-backend-lwjgl.classpath">
+        <pathelement location="${gdx-backend-lwjgl.location}/bin"/>
+        <pathelement location="${gdx.location}/libs/gdx-natives.jar"/>
+        <pathelement location="${gdx-backend-lwjgl.location}/libs/gdx-backend-lwjgl-natives.jar"/>
+        <path refid="gdx-openal.classpath"/>
+    </path>
+    <path id="codebird-cave.classpath">
+        <pathelement location="${codebird-cave.location}/bin"/>
+        <pathelement location="${codebird-cave.location}/libs/gdx.jar"/>
+        <pathelement location="${codebird-cave.location}/libs/bodyeditor-loader.jar"/>
+        <pathelement location="${codebird-cave.location}/libs/tween-engine-api.jar"/>
+        <path refid="gdx-backend-lwjgl.classpath"/>
+    </path>
+    <path id="codebird-cave-desktop.classpath">
+        <pathelement location="bin"/>
+        <path refid="codebird-cave.classpath"/>
+        <pathelement location="libs/gdx-backend-lwjgl.jar"/>
+        <pathelement location="libs/gdx-backend-lwjgl-natives.jar"/>
+        <pathelement location="libs/gdx-natives.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="${assets.link}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${gdx-jnigen.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-openal.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-backend-lwjgl.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${codebird-cave.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${gdx-jnigen.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-openal.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-backend-lwjgl.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${codebird-cave.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="${assets.link}"/>
+            <classpath refid="codebird-cave-desktop.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Main (2)">
+        <java classname="projects.cbag.codebird.Main" failonerror="true" fork="yes">
+            <classpath refid="codebird-cave-desktop.classpath"/>
+        </java>
+    </target>
+</project>

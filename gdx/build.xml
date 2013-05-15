@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="gdx">
+    <property environment="env"/>
+    <property name="cuboc.location" value="../demos/cuboc/cuboc"/>
+    <property name="cuboc-android.location" value="../demos/cuboc/cuboc-android"/>
+    <property name="cuboc-html.location" value="../demos/cuboc/cuboc-html"/>
+    <property name="gdx-audio.location" value="../extensions/gdx-audio"/>
+    <property name="gdx-backend-android.location" value="../backends/gdx-backend-android"/>
+    <property name="gdx-backend-iosmonotouch.location" value="../backends/gdx-backend-iosmonotouch"/>
+    <property name="gdx-backend-jglfw.location" value="../backends/gdx-backend-jglfw"/>
+    <property name="gdx-backends-gwt.location" value="../backends/gdx-backends-gwt"/>
+    <property name="gdx-bullet.location" value="../extensions/gdx-bullet"/>
+    <property name="gdx-controllers.location" value="../extensions/gdx-controllers/gdx-controllers"/>
+    <property name="gdx-controllers-android.location" value="../extensions/gdx-controllers/gdx-controllers-android"/>
+    <property name="gdx-controllers-desktop.location" value="../extensions/gdx-controllers/gdx-controllers-desktop"/>
+    <property name="gdx-controllers-gwt.location" value="../extensions/gdx-controllers/gdx-controllers-gwt"/>
+    <property name="gdx-freetype.location" value="../extensions/gdx-freetype"/>
+    <property name="gdx-image.location" value="../extensions/gdx-image"/>
+    <property name="gdx-invaders.location" value="../demos/invaders/gdx-invaders"/>
+    <property name="gdx-invaders-android.location" value="../demos/invaders/gdx-invaders-android"/>
+    <property name="gdx-invaders-html5.location" value="../demos/invaders/gdx-invaders-html5"/>
+    <property name="gdx-openal.location" value="../backends/gdx-openal"/>
+    <property name="gdx-remote.location" value="../extensions/gdx-remote"/>
+    <property name="gdx-tests.location" value="../tests/gdx-tests"/>
+    <property name="gdx-tests-android.location" value="../tests/gdx-tests-android"/>
+    <property name="gdx-tests-gwt.location" value="../tests/gdx-tests-gwt"/>
+    <property name="gdx-tests-jglfw.location" value="../tests/gdx-tests-jglfw"/>
+    <property name="gdx-tests-lwjgl.location" value="../tests/gdx-tests-lwjgl"/>
+    <property name="gdx-tools.location" value="../extensions/gdx-tools"/>
+    <property name="gdx-vectorpinball.location" value="../demos/vector-pinball/gdx-vectorpinball"/>
+    <property name="gdx-vectorpinball-android.location" value="../demos/vector-pinball/gdx-vectorpinball-android"/>
+    <property name="gdx-vectorpinball-html5.location" value="../demos/vector-pinball/gdx-vectorpinball-html5"/>
+    <property name="metagun.location" value="../demos/metagun/metagun-desktop"/>
+    <property name="metagun-android.location" value="../demos/metagun/metagun-android"/>
+    <property name="model-loaders.location" value="../extensions/model-loaders/model-loaders"/>
+    <property name="model-loaders-android.location" value="../extensions/model-loaders/model-loaders-android"/>
+    <property name="pax-britannica.location" value="../demos/pax-britannica/pax-britannica"/>
+    <property name="pax-britannica-android.location" value="../demos/pax-britannica/pax-britannica-android"/>
+    <property name="pax-britannica-html.location" value="../demos/pax-britannica/pax-britannica-html"/>
+    <property name="superjumper.location" value="../demos/superjumper/superjumper"/>
+    <property name="superjumper-android.location" value="../demos/superjumper/superjumper-android"/>
+    <property name="superjumper-html.location" value="../demos/superjumper/superjumper-html"/>
+    <property name="very-angry-robots.location" value="../demos/very-angry-robots/very-angry-robots"/>
+    <property name="very-angry-robots-android.location" value="../demos/very-angry-robots/very-angry-robots-android"/>
+    <property name="ECLIPSE_HOME" value="../../../adt-bundle-windows-x86_64-20130219/eclipse"/>
+    <property name="gdx-jnigen.location" value="../extensions/gdx-jnigen"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="gdx-jnigen.classpath">
+        <pathelement location="${gdx-jnigen.location}/bin"/>
+        <pathelement location="${gdx-jnigen.location}/libs/javaparser-1.0.8.jar"/>
+    </path>
+    <path id="gdx.classpath">
+        <pathelement location="bin"/>
+        <path refid="gdx-jnigen.classpath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/.svn/*"/>
+                <exclude name="com/badlogic/emu/"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="build.xml" dir="${gdx-jnigen.location}" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="build.xml" dir="${gdx-jnigen.location}" inheritAll="false" target="build-project">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="**/.svn/*"/>
+            <exclude name="com/badlogic/emu/"/>
+            <classpath refid="gdx.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="build.xml" dir="${cuboc.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${cuboc.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${cuboc-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${cuboc-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${cuboc-html.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${cuboc-html.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-audio.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-audio.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-backend-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-backend-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-backend-iosmonotouch.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-backend-iosmonotouch.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-backend-jglfw.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-backend-jglfw.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-backends-gwt.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-backends-gwt.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-bullet.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-bullet.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-controllers.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-controllers.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-controllers-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-controllers-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-controllers-desktop.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-controllers-desktop.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-controllers-gwt.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-controllers-gwt.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-freetype.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-freetype.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-image.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-image.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-invaders.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-invaders.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-invaders-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-invaders-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-invaders-html5.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-invaders-html5.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-openal.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-openal.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-remote.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-remote.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tests.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tests.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tests-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tests-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tests-gwt.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tests-gwt.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tests-jglfw.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tests-jglfw.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tests-lwjgl.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tests-lwjgl.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-tools.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-tools.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball-html5.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${gdx-vectorpinball-html5.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${metagun.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${metagun.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${metagun-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${metagun-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${model-loaders.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${model-loaders.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${model-loaders-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${model-loaders-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${pax-britannica.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${pax-britannica.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${pax-britannica-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${pax-britannica-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${pax-britannica-html.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${pax-britannica-html.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${superjumper.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${superjumper.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${superjumper-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${superjumper-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${superjumper-html.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${superjumper-html.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${very-angry-robots.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${very-angry-robots.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${very-angry-robots-android.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${very-angry-robots-android.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>
